@@ -99,7 +99,8 @@ with st.form("booking_form"):
                 "Client": client_name,
                 "Truck": truck['model'],
                 "Days": duration,
-                "Total Estimate": f"${total_cost*duration}",
+                "Total Estimate": f"${total_cost}",
                 "Status": "Pending Approval"
 
             })
+
