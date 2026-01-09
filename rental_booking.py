@@ -71,13 +71,17 @@ st.divider()
 st.subheader("2. Job Details")
 
 with st.form("booking_form"):
-    c1, c2 = st.columns(2)
+    c1, c2, c3 = st.columns(3)
     with c1:
         client_name = st.text_input("Your Name / Company")
         start_date = st.date_input("Start Date", min_value=date.today())
     with c2:
         contact_email = st.text_input("Email Address")
+        end_date = st.date_input("End Date", min_value=date.today())
         duration = st.number_input("Rental Duration (Days)", min_value=1, value=1)
+    with c3:
+        total_duration = end_date - start_date
+        duration = st.number_input("Rental Duration (Days)", total_duration)
 
     location = st.text_area("Job Site Location & Access Details")
     
@@ -99,8 +103,6 @@ with st.form("booking_form"):
                 "Client": client_name,
                 "Truck": truck['model'],
                 "Days": duration,
-                "Total Estimate": f"${total_cost}",
+                "Total Estimate": f"${total_cost*duration}",
                 "Status": "Pending Approval"
-
             })
-
